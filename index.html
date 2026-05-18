@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Voss — Creative Director</title>
+  <meta name="description" content="Creative Director crafting high-end digital experiences — brand identity, web design, and product design." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Page-specific: home parallax shapes */
+    .shapes-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.04;
+      filter: blur(1px);
+    }
+    .shape-1 {
+      width: 600px; height: 600px;
+      background: var(--white);
+      top: -200px; right: -200px;
+      border-radius: 0;
+      transform: rotate(20deg);
+    }
+    .shape-2 {
+      width: 300px; height: 300px;
+      background: var(--accent);
+      bottom: 20%; left: 5%;
+      opacity: 0.06;
+    }
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      border: 1px solid var(--grey);
+      padding: 0.5rem 1rem;
+      margin-bottom: 3rem;
+    }
+    .available-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <nav>
+    <a class="nav-logo" href="index.html">AV Studio</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="shapes-bg">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    <div class="available-badge">
+      <span class="dot"></span>
+      Available for projects
+    </div>
+    <p class="hero-eyebrow">Creative Direction & Web Design</p>
+    <h1 class="hero-name">
+      <span class="line-1">Alex</span>
+      <span class="line-2">Voss</span>
+    </h1>
+    <p class="hero-tagline">Making brands impossible to ignore, one pixel at a time.</p>
+    <div class="hero-year">© 2026</div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Brand Identity</span><span class="dot">✦</span>
+      <span>Web Design</span><span class="dot">✦</span>
+      <span>Product Design</span><span class="dot">✦</span>
+      <span>Art Direction</span><span class="dot">✦</span>
+      <span>Motion Design</span><span class="dot">✦</span>
+      <span>UX / UI</span><span class="dot">✦</span>
+      <span>Webflow Dev</span><span class="dot">✦</span>
+      <span>Visual Systems</span><span class="dot">✦</span>
+      <!-- duplicate for infinite scroll -->
+      <span>Brand Identity</span><span class="dot">✦</span>
+      <span>Web Design</span><span class="dot">✦</span>
+      <span>Product Design</span><span class="dot">✦</span>
+      <span>Art Direction</span><span class="dot">✦</span>
+      <span>Motion Design</span><span class="dot">✦</span>
+      <span>UX / UI</span><span class="dot">✦</span>
+      <span>Webflow Dev</span><span class="dot">✦</span>
+      <span>Visual Systems</span><span class="dot">✦</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section>
+    <p class="section-label">What I Do</p>
+    <div class="services-grid">
+      <div class="service-item reveal">
+        <span class="service-num">01</span>
+        <h3 class="service-title">Websites &<br>Landing Pages</h3>
+        <p class="service-desc">High-end digital presences built to perform, convert, and leave a lasting impression on anyone who lands on them.</p>
+        <img class="service-img" src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&q=80&auto=format&fit=crop" alt="Web Design" />
+      </div>
+      <div class="service-item reveal reveal-delay-1">
+        <span class="service-num">02</span>
+        <h3 class="service-title">Visual<br>Branding</h3>
+        <p class="service-desc">Distinctive visual identities that give your brand a unique voice — from logo to full design system.</p>
+        <img class="service-img" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80&auto=format&fit=crop" alt="Branding" />
+      </div>
+      <div class="service-item reveal">
+        <span class="service-num">03</span>
+        <h3 class="service-title">Product<br>Design</h3>
+        <p class="service-desc">Turning complex digital products into intuitive, beautiful experiences that users actually enjoy using.</p>
+        <img class="service-img" src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80&auto=format&fit=crop" alt="Product Design" />
+      </div>
+      <div class="service-item reveal reveal-delay-1">
+        <span class="service-num">04</span>
+        <h3 class="service-title">Art<br>Direction</h3>
+        <p class="service-desc">Setting the visual tone for campaigns, launches, and brand moments that need to stop people mid-scroll.</p>
+        <img class="service-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80&auto=format&fit=crop" alt="Art Direction" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT STRIP -->
+  <div class="about-strip reveal">
+    <p class="section-label">About</p>
+    <p class="about-big-text">
+      Design is <em>not decoration</em> — it's the clearest signal a company sends about who they are and what they value.
+    </p>
+    <a class="about-cta" href="about.html">More about me</a>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="reveal">Let's build something people remember.</h2>
+    <a class="cta-email reveal reveal-delay-1" href="mailto:hello@alexvoss.co">hello@alexvoss.co</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Alex<br>Voss</div>
+    <div>
+      <p class="footer-col-label">Navigation</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-label">Connect</p>
+      <div class="footer-links">
+        <a href="mailto:hello@alexvoss.co">Email</a>
+        <a href="#" target="_blank">LinkedIn</a>
+        <a href="#" target="_blank">X / Twitter</a>
+        <a href="#" target="_blank">Behance</a>
+      </div>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© Alex Voss 2026 — All rights reserved</span>
+    <span>Creative Director — Available for Freelance</span>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
