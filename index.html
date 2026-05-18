@@ -6,62 +6,27 @@
   <title>Alex Voss — Creative Director</title>
   <meta name="description" content="Creative Director crafting high-end digital experiences — brand identity, web design, and product design." />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* Page-specific: home parallax shapes */
-    .shapes-bg {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.04;
-      filter: blur(1px);
-    }
-    .shape-1 {
-      width: 600px; height: 600px;
-      background: var(--white);
-      top: -200px; right: -200px;
-      border-radius: 0;
-      transform: rotate(20deg);
-    }
-    .shape-2 {
-      width: 300px; height: 300px;
-      background: var(--accent);
-      bottom: 20%; left: 5%;
-      opacity: 0.06;
-    }
-    .available-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: var(--font-mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--grey-light);
-      border: 1px solid var(--grey);
-      padding: 0.5rem 1rem;
-      margin-bottom: 3rem;
-    }
-    .available-badge .dot {
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-  </style>
 </head>
 <body>
+
+  <!-- PRELOADER -->
+  <div class="preloader">
+    <div class="pre-bars">
+      <div class="pre-bar"></div>
+      <div class="pre-bar"></div>
+      <div class="pre-bar"></div>
+      <div class="pre-bar"></div>
+      <div class="pre-bar"></div>
+    </div>
+    <div class="pre-logo">AV</div>
+    <div class="pre-counter">0%</div>
+  </div>
+
+  <!-- CURSOR -->
   <div class="cursor"></div>
   <div class="cursor-ring"></div>
 
+  <!-- NAV -->
   <nav>
     <a class="nav-logo" href="index.html">AV Studio</a>
     <ul class="nav-links">
@@ -74,18 +39,23 @@
   <!-- HERO -->
   <section class="hero">
     <div class="shapes-bg">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
+      <div class="float-shape shape-square" data-speed="0.4"></div>
+      <div class="float-shape shape-circle" data-speed="0.25"></div>
+      <div class="float-shape shape-pill"   data-speed="0.6"></div>
     </div>
+
     <div class="available-badge">
-      <span class="dot"></span>
+      <span class="badge-dot"></span>
       Available for projects
     </div>
-    <p class="hero-eyebrow">Creative Direction & Web Design</p>
+
+    <p class="hero-eyebrow">Creative Direction &amp; Web Design</p>
+
     <h1 class="hero-name">
-      <span class="line-1">Alex</span>
-      <span class="line-2">Voss</span>
+      <span class="hero-line"><span class="hero-line-inner">Alex</span></span>
+      <span class="hero-line"><span class="hero-line-inner">Voss</span></span>
     </h1>
+
     <p class="hero-tagline">Making brands impossible to ignore, one pixel at a time.</p>
     <div class="hero-year">© 2026</div>
     <div class="hero-scroll">Scroll</div>
@@ -94,23 +64,23 @@
   <!-- MARQUEE -->
   <div class="marquee-wrap">
     <div class="marquee-track">
-      <span>Brand Identity</span><span class="dot">✦</span>
-      <span>Web Design</span><span class="dot">✦</span>
-      <span>Product Design</span><span class="dot">✦</span>
-      <span>Art Direction</span><span class="dot">✦</span>
-      <span>Motion Design</span><span class="dot">✦</span>
-      <span>UX / UI</span><span class="dot">✦</span>
-      <span>Webflow Dev</span><span class="dot">✦</span>
-      <span>Visual Systems</span><span class="dot">✦</span>
-      <!-- duplicate for infinite scroll -->
-      <span>Brand Identity</span><span class="dot">✦</span>
-      <span>Web Design</span><span class="dot">✦</span>
-      <span>Product Design</span><span class="dot">✦</span>
-      <span>Art Direction</span><span class="dot">✦</span>
-      <span>Motion Design</span><span class="dot">✦</span>
-      <span>UX / UI</span><span class="dot">✦</span>
-      <span>Webflow Dev</span><span class="dot">✦</span>
-      <span>Visual Systems</span><span class="dot">✦</span>
+      <span>Brand Identity</span><span class="mdot">✦</span>
+      <span>Web Design</span><span class="mdot">✦</span>
+      <span>Product Design</span><span class="mdot">✦</span>
+      <span>Art Direction</span><span class="mdot">✦</span>
+      <span>Motion Design</span><span class="mdot">✦</span>
+      <span>UX / UI</span><span class="mdot">✦</span>
+      <span>Webflow Dev</span><span class="mdot">✦</span>
+      <span>Visual Systems</span><span class="mdot">✦</span>
+      <!-- duplicate for seamless loop -->
+      <span>Brand Identity</span><span class="mdot">✦</span>
+      <span>Web Design</span><span class="mdot">✦</span>
+      <span>Product Design</span><span class="mdot">✦</span>
+      <span>Art Direction</span><span class="mdot">✦</span>
+      <span>Motion Design</span><span class="mdot">✦</span>
+      <span>UX / UI</span><span class="mdot">✦</span>
+      <span>Webflow Dev</span><span class="mdot">✦</span>
+      <span>Visual Systems</span><span class="mdot">✦</span>
     </div>
   </div>
 
@@ -118,46 +88,59 @@
   <section>
     <p class="section-label">What I Do</p>
     <div class="services-grid">
-      <div class="service-item reveal">
+
+      <div class="service-item">
         <span class="service-num">01</span>
-        <h3 class="service-title">Websites &<br>Landing Pages</h3>
+        <h3 class="service-title" data-split="chars">Websites &amp;<br>Landing Pages</h3>
         <p class="service-desc">High-end digital presences built to perform, convert, and leave a lasting impression on anyone who lands on them.</p>
-        <img class="service-img" src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=800&q=80&auto=format&fit=crop" alt="Web Design" />
+        <div class="parallax-wrap">
+          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=900&q=80&auto=format&fit=crop" alt="Web Design" />
+        </div>
       </div>
-      <div class="service-item reveal reveal-delay-1">
+
+      <div class="service-item">
         <span class="service-num">02</span>
-        <h3 class="service-title">Visual<br>Branding</h3>
-        <p class="service-desc">Distinctive visual identities that give your brand a unique voice — from logo to full design system.</p>
-        <img class="service-img" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&q=80&auto=format&fit=crop" alt="Branding" />
+        <h3 class="service-title" data-split="chars">Visual<br>Branding</h3>
+        <p class="service-desc">Distinctive visual identities that give your brand a unique voice — from logo mark to complete design system.</p>
+        <div class="parallax-wrap">
+          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&q=80&auto=format&fit=crop" alt="Branding" />
+        </div>
       </div>
-      <div class="service-item reveal">
+
+      <div class="service-item">
         <span class="service-num">03</span>
-        <h3 class="service-title">Product<br>Design</h3>
-        <p class="service-desc">Turning complex digital products into intuitive, beautiful experiences that users actually enjoy using.</p>
-        <img class="service-img" src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80&auto=format&fit=crop" alt="Product Design" />
+        <h3 class="service-title" data-split="chars">Product<br>Design</h3>
+        <p class="service-desc">Turning complex digital products into intuitive, beautiful experiences that users actually enjoy using every day.</p>
+        <div class="parallax-wrap">
+          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=900&q=80&auto=format&fit=crop" alt="Product Design" />
+        </div>
       </div>
-      <div class="service-item reveal reveal-delay-1">
+
+      <div class="service-item">
         <span class="service-num">04</span>
-        <h3 class="service-title">Art<br>Direction</h3>
-        <p class="service-desc">Setting the visual tone for campaigns, launches, and brand moments that need to stop people mid-scroll.</p>
-        <img class="service-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80&auto=format&fit=crop" alt="Art Direction" />
+        <h3 class="service-title" data-split="chars">Art<br>Direction</h3>
+        <p class="service-desc">Setting the visual tone for campaigns, launches, and brand moments that stop people mid-scroll.</p>
+        <div class="parallax-wrap">
+          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&q=80&auto=format&fit=crop" alt="Art Direction" />
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- ABOUT STRIP -->
-  <div class="about-strip reveal">
+  <div class="about-strip">
     <p class="section-label">About</p>
     <p class="about-big-text">
       Design is <em>not decoration</em> — it's the clearest signal a company sends about who they are and what they value.
     </p>
-    <a class="about-cta" href="about.html">More about me</a>
+    <a class="about-cta reveal" href="about.html">More about me</a>
   </div>
 
   <!-- CTA -->
   <section class="cta-section">
-    <h2 class="reveal">Let's build something people remember.</h2>
-    <a class="cta-email reveal reveal-delay-1" href="mailto:hello@alexvoss.co">hello@alexvoss.co</a>
+    <h2 class="reveal" data-split="words">Let's build something people remember.</h2>
+    <a class="cta-email" href="mailto:hello@alexvoss.co">hello@alexvoss.co</a>
   </section>
 
   <!-- FOOTER -->
@@ -186,6 +169,11 @@
     <span>Creative Director — Available for Freelance</span>
   </div>
 
+  <!-- SCRIPTS: GSAP + ScrollTrigger + Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script>gsap.registerPlugin(ScrollTrigger);</script>
   <script src="js/main.js"></script>
 </body>
 </html>
