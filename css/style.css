@@ -219,21 +219,6 @@ nav {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50%       { transform: translateX(-50%) translateY(10px); }
 }
-.available-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--grey-light);
-  border: 1px solid var(--grey);
-  padding: 0.5rem 1rem;
-  margin-bottom: 2.5rem;
-  opacity: 0; /* animated in */
-  width: fit-content;
-}
 .badge-dot {
   width: 6px; height: 6px;
   background: var(--accent);
