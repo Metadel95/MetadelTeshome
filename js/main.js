@@ -125,7 +125,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       // Cursor is 60px native but starts visually at ~10px via scale(0.167)
       // GSAP controls position via x/y (not left/top) to avoid transform conflicts
-      const BASE  = 0.10;  // ~10px visible out of 60px element
+      const BASE  = 0.20;  // ~10px visible out of 60px element
       const HOVER = 0.58;   // ~35px on links  — crisp, no pixelation
       const IMG   = 1.0;    // full 60px on images
 
