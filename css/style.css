@@ -496,16 +496,15 @@ section { padding: 8rem 3rem; }
 .work-nav-sticky {
   position: sticky;
   top: 0;
-  z-index: 200;
+  z-index: 49;
   background: var(--black);
-  border-top: 1px solid var(--grey);
   border-bottom: 1px solid var(--grey);
   padding: 0 3rem;
   display: flex;
+  align-items: center;
   overflow-x: auto;
   scrollbar-width: none;
-  /* solid shadow so nothing bleeds through from below */
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.95);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.98);
 }
 .work-nav-sticky::-webkit-scrollbar { display: none; }
 
@@ -522,10 +521,13 @@ section { padding: 8rem 3rem; }
   font-weight: 400;
   letter-spacing: 0.18em;
   color: var(--white);
-  padding: 1rem 1.4rem;
+  padding: 0 1.4rem;
   border-right: 1px solid var(--grey);
   white-space: nowrap;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 52px;
 }
 .work-nav-page {
   font-family: var(--font-mono);
@@ -533,10 +535,13 @@ section { padding: 8rem 3rem; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--grey-light);
-  padding: 1rem 1.1rem;
+  padding: 0 1.1rem;
   border-right: 1px solid var(--grey);
   white-space: nowrap;
   transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  height: 52px;
 }
 .work-nav-page:hover { color: var(--white); }
 .work-nav-page.active { color: var(--accent); }
@@ -557,9 +562,9 @@ section { padding: 8rem 3rem; }
   padding: 1rem 1.4rem;
   border-right: 1px solid var(--grey);
   white-space: nowrap;
-  transition: background 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
-.work-nav-sticky a:hover { background: #111; }
+.work-nav-sticky a:hover { background: #111; color: var(--white); }
 
 /* ─── WORK ITEMS ─────────────────────────────────────────── */
 .work-item {
