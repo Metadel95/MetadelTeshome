@@ -508,6 +508,46 @@ section { padding: 8rem 3rem; }
   box-shadow: 0 4px 24px 0 rgba(0,0,0,0.95);
 }
 .work-nav-sticky::-webkit-scrollbar { display: none; }
+
+/* brand + page nav embedded in work bar */
+.work-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+}
+.work-nav-logo {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--white);
+  padding: 1rem 1.4rem;
+  border-right: 1px solid var(--grey);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.work-nav-page {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  padding: 1rem 1.1rem;
+  border-right: 1px solid var(--grey);
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+.work-nav-page:hover { color: var(--white); }
+.work-nav-page.active { color: var(--accent); }
+.work-nav-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--grey);
+  flex-shrink: 0;
+  margin-right: 0;
+}
+
 .work-nav-sticky a {
   font-family: var(--font-mono);
   font-size: 0.58rem;
