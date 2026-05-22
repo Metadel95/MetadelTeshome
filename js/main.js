@@ -89,15 +89,29 @@ window.addEventListener('DOMContentLoaded', () => {
   ─────────────────────────────────────────────────────────*/
   function initNav() {
     safe(() => {
-      const nav      = qs('nav');
-      const workNav  = qs('.work-nav-sticky');
+      const nav = qs('nav');
       if (!nav) return;
 
-      // On work page — hide main nav immediately so work nav owns the top
+      const workNav = qs('.work-nav-sticky');
+
       if (workNav) {
-        gsap.set(nav, { y: '-110%' });
+        // On work page — fade + disable nav on scroll so section bar is always clickable
+        ScrollTrigger.create({
+          start: 80,
+          onUpdate(self) {
+            if (self.direction === 1) {
+              // scrolling down — fade out and disable pointer events
+              gsap.to(nav, { opacity: 0, duration: 0.3, ease: 'power2.out',
+                onComplete: () => nav.style.pointerEvents = 'none' });
+            } else {
+              // scrolling up — fade back in and re-enable
+              nav.style.pointerEvents = 'auto';
+              gsap.to(nav, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+            }
+          }
+        });
       } else {
-        // All other pages — hide on scroll down, show on scroll up
+        // All other pages — slide hide/show
         ScrollTrigger.create({
           start: 120,
           onUpdate(self) {
@@ -131,7 +145,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
       // Cursor is 60px native but starts visually at ~10px via scale(0.167)
       // GSAP controls position via x/y (not left/top) to avoid transform conflicts
-      const BASE  = 0.20;  // ~10px visible out of 60px element
+      const BASE  = 0.167;  // ~10px visible out of 60px element
       const HOVER = 0.58;   // ~35px on links  — crisp, no pixelation
       const IMG   = 1.0;    // full 60px on images
 
