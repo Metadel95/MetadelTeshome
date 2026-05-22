@@ -495,14 +495,17 @@ section { padding: 8rem 3rem; }
 }
 .work-nav-sticky {
   position: sticky;
-  top: 72px;
-  z-index: 50;
+  top: 0;
+  z-index: 200;
   background: var(--black);
+  border-top: 1px solid var(--grey);
   border-bottom: 1px solid var(--grey);
   padding: 0 3rem;
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
+  /* solid shadow so nothing bleeds through from below */
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.95);
 }
 .work-nav-sticky::-webkit-scrollbar { display: none; }
 .work-nav-sticky a {
