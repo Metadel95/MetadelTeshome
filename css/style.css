@@ -44,17 +44,18 @@ ul  { list-style: none; }
 }
 .pre-bars {
   display: flex;
-  gap: 3px;
+  gap: 2px;
   position: absolute;
   inset: 0;
+  z-index: 2;
 }
 .pre-bar {
   flex: 1;
-  background: var(--black);
-  border-right: 1px solid #111;
-  transform-origin: bottom;
+  background: #0d0d0d;
+  border-right: 1px solid #1a1a1a;
+  /* bars slide UP to exit — GSAP animates yPercent: -100 */
 }
-/* bars revealed over dark bg */
+/* logo/counter sit above bars */
 .pre-logo {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 4vw, 3rem);
@@ -77,7 +78,7 @@ ul  { list-style: none; }
 /* ─── CUSTOM CURSOR ──────────────────────────────────────── */
 .cursor {
   position: fixed;
-  width: 10px; height: 10px;
+  width: 60px; height: 60px;
   background: var(--accent);
   border-radius: 50%;
   pointer-events: none;
@@ -218,6 +219,21 @@ nav {
 @keyframes scrollBob {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50%       { transform: translateX(-50%) translateY(10px); }
+}
+.available-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  border: 1px solid var(--grey);
+  padding: 0.5rem 1rem;
+  margin-bottom: 2.5rem;
+  opacity: 0; /* animated in */
+  width: fit-content;
 }
 .badge-dot {
   width: 6px; height: 6px;
