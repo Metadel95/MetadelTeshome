@@ -3,9 +3,223 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Metadel Teshome — Creative Director</title>
-  <meta name="description" content="Creative Director crafting high-end digital experiences — brand identity, web design, and product design." />
+  <title>Works — Alex Voss</title>
+  <meta name="description" content="Visual works by Alex Voss — posters, branding, photography, and experimental design." />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── WORKS PAGE SPECIFIC ───────────────────────────── */
+
+    .works-hero {
+      height: 55vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 3rem;
+      border-bottom: 1px solid var(--grey);
+      position: relative;
+      overflow: hidden;
+    }
+    .works-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 9rem);
+      font-weight: 200;
+      line-height: 0.9;
+    }
+    .works-hero h1 span {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.38em;
+      color: var(--grey-light);
+      font-weight: 300;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ── FILTER BAR ────────────────────────────────────── */
+    .works-filter {
+      position: sticky;
+      top: 0;
+      z-index: 600;
+      background: var(--black);
+      border-bottom: 1px solid var(--grey);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.98);
+    }
+    .works-filter::-webkit-scrollbar { display: none; }
+    .works-filter-btn {
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      padding: 1rem 1.4rem;
+      border-right: 1px solid var(--grey);
+      white-space: nowrap;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-bottom: none;
+      border-left: none;
+      transition: color 0.3s, background 0.3s;
+    }
+    .works-filter-btn:hover { color: var(--white); background: #111; }
+    .works-filter-btn.active { color: var(--accent); }
+
+    /* ── GALLERY GRID ──────────────────────────────────── */
+    .works-gallery {
+      padding: 3rem;
+      columns: 3;
+      column-gap: 1rem;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      opacity: 0.82;
+      transition: opacity 0.5s ease, transform 0.6s ease;
+      will-change: transform;
+    }
+    .gallery-item:hover img {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-item-info {}
+    .gallery-item-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 200;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .gallery-item-cat {
+      font-family: var(--font-mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* tall / wide / square item variants */
+    .gallery-item.tall img   { aspect-ratio: 3/4; }
+    .gallery-item.wide img   { aspect-ratio: 4/3; }
+    .gallery-item.square img { aspect-ratio: 1/1; }
+    .gallery-item.short img  { aspect-ratio: 5/3; }
+
+    /* ── LIGHTBOX ───────────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      display: block;
+      border: 1px solid var(--grey);
+    }
+    .lightbox-caption {
+      position: absolute;
+      bottom: -2.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-light);
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--grey);
+      padding: 0.6rem 1.2rem;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .lightbox-close:hover { color: var(--white); border-color: var(--white); }
+    .lightbox-prev,
+    .lightbox-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid var(--grey);
+      color: var(--grey-light);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      transition: color 0.3s, border-color 0.3s, background 0.3s;
+    }
+    .lightbox-prev:hover,
+    .lightbox-next:hover { color: var(--white); border-color: var(--white); background: #111; }
+    .lightbox-prev { left: 2rem; }
+    .lightbox-next { right: 2rem; }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .works-gallery { columns: 2; padding: 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      .works-gallery { columns: 1; padding: 1rem; }
+      .works-filter { padding: 0 1rem; }
+      .lightbox-prev { left: 0.5rem; }
+      .lightbox-next { right: 0.5rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -38,110 +252,210 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="shapes-bg">
-      <div class="float-shape shape-square" data-speed="0.4"></div>
-      <div class="float-shape shape-circle" data-speed="0.25"></div>
-      <div class="float-shape shape-pill"   data-speed="0.6"></div>
-    </div>
-
-    <p class="hero-eyebrow">Creative Direction &amp; Web Design</p>
-
-    <h1 class="hero-name">
-      <span class="hero-line"><span class="hero-line-inner">Metadel</span></span>
-      <span class="hero-line"><span class="hero-line-inner">Teshome</span></span>
-    </h1>
-
-    <p class="hero-tagline">Making brands impossible to ignore, one pixel at a time.</p>
-    <div class="hero-year">© 2026</div>
-    <div class="hero-scroll">Scroll</div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>Brand Identity</span><span class="mdot">✦</span>
-      <span>Web Design</span><span class="mdot">✦</span>
-      <span>Product Design</span><span class="mdot">✦</span>
-      <span>Art Direction</span><span class="mdot">✦</span>
-      <span>Motion Design</span><span class="mdot">✦</span>
-      <span>UX / UI</span><span class="mdot">✦</span>
-      <span>Webflow Dev</span><span class="mdot">✦</span>
-      <span>Visual Systems</span><span class="mdot">✦</span>
-      <!-- duplicate for seamless loop -->
-      <span>Brand Identity</span><span class="mdot">✦</span>
-      <span>Web Design</span><span class="mdot">✦</span>
-      <span>Product Design</span><span class="mdot">✦</span>
-      <span>Art Direction</span><span class="mdot">✦</span>
-      <span>Motion Design</span><span class="mdot">✦</span>
-      <span>UX / UI</span><span class="mdot">✦</span>
-      <span>Webflow Dev</span><span class="mdot">✦</span>
-      <span>Visual Systems</span><span class="mdot">✦</span>
+  <div class="works-hero">
+    <div>
+      <h1>
+        <span>Visual</span>
+        Works
+      </h1>
     </div>
   </div>
 
-  <!-- SERVICES -->
-  <section>
-    <p class="section-label">What I Do</p>
-    <div class="services-grid">
+  <!-- FILTER BAR -->
+  <div class="works-filter">
+    <button class="works-filter-btn active" data-filter="all">All</button>
+    <button class="works-filter-btn" data-filter="poster">Posters</button>
+    <button class="works-filter-btn" data-filter="branding">Branding</button>
+    <button class="works-filter-btn" data-filter="typography">Typography</button>
+    <button class="works-filter-btn" data-filter="photography">Photography</button>
+    <button class="works-filter-btn" data-filter="experimental">Experimental</button>
+  </div>
 
-      <div class="service-item">
-        <span class="service-num">01</span>
-        <h3 class="service-title" data-split="chars">Websites &amp;<br>Landing Pages</h3>
-        <p class="service-desc">High-end digital presences built to perform, convert, and leave a lasting impression on anyone who lands on them.</p>
-        <div class="parallax-wrap">
-          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1558655146-364adaf1fcc9?w=900&q=80&auto=format&fit=crop" alt="Web Design" />
+  <!-- GALLERY -->
+  <div class="works-gallery" id="gallery">
+
+    <div class="gallery-item tall" data-category="poster">
+      <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80&auto=format&fit=crop" alt="Poster 01" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Monochrome Series 01</span>
+          <span class="gallery-item-cat">Poster</span>
         </div>
       </div>
-
-      <div class="service-item">
-        <span class="service-num">02</span>
-        <h3 class="service-title" data-split="chars">Visual<br>Branding</h3>
-        <p class="service-desc">Distinctive visual identities that give your brand a unique voice — from logo mark to complete design system.</p>
-        <div class="parallax-wrap">
-          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&q=80&auto=format&fit=crop" alt="Branding" />
-        </div>
-      </div>
-
-      <div class="service-item">
-        <span class="service-num">03</span>
-        <h3 class="service-title" data-split="chars">Product<br>Design</h3>
-        <p class="service-desc">Turning complex digital products into intuitive, beautiful experiences that users actually enjoy using every day.</p>
-        <div class="parallax-wrap">
-          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=900&q=80&auto=format&fit=crop" alt="Product Design" />
-        </div>
-      </div>
-
-      <div class="service-item">
-        <span class="service-num">04</span>
-        <h3 class="service-title" data-split="chars">Art<br>Direction</h3>
-        <p class="service-desc">Setting the visual tone for campaigns, launches, and brand moments that stop people mid-scroll.</p>
-        <div class="parallax-wrap">
-          <img class="service-img parallax-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&q=80&auto=format&fit=crop" alt="Art Direction" />
-        </div>
-      </div>
-
     </div>
-  </section>
 
-  <!-- ABOUT STRIP -->
-  <div class="about-strip">
-    <p class="section-label">About</p>
-    <p class="about-big-text">
-      Design is <em>not decoration</em> — it's the clearest signal a company sends about who they are and what they value.
-    </p>
-    <a class="about-cta reveal" href="about.html">More about me</a>
+    <div class="gallery-item square" data-category="branding">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop" alt="Branding 01" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Mark Study</span>
+          <span class="gallery-item-cat">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item wide" data-category="photography">
+      <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=900&q=80&auto=format&fit=crop" alt="Photo 01" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">City Geometry</span>
+          <span class="gallery-item-cat">Photography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item tall" data-category="typography">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop" alt="Type 01" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Type Experiment I</span>
+          <span class="gallery-item-cat">Typography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item short" data-category="experimental">
+      <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=900&q=80&auto=format&fit=crop" alt="Experimental 01" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Glitch Study</span>
+          <span class="gallery-item-cat">Experimental</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item square" data-category="poster">
+      <img src="https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=800&q=80&auto=format&fit=crop" alt="Poster 02" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Festival Poster</span>
+          <span class="gallery-item-cat">Poster</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item tall" data-category="photography">
+      <img src="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=800&q=80&auto=format&fit=crop" alt="Photo 02" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Light & Shadow</span>
+          <span class="gallery-item-cat">Photography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item wide" data-category="branding">
+      <img src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=900&q=80&auto=format&fit=crop" alt="Branding 02" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Identity System</span>
+          <span class="gallery-item-cat">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item square" data-category="typography">
+      <img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=800&q=80&auto=format&fit=crop" alt="Type 02" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Letterform Study</span>
+          <span class="gallery-item-cat">Typography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item tall" data-category="poster">
+      <img src="https://images.unsplash.com/photo-1545987796-200677ee1011?w=800&q=80&auto=format&fit=crop" alt="Poster 03" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Brutalist Poster</span>
+          <span class="gallery-item-cat">Poster</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item short" data-category="photography">
+      <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80&auto=format&fit=crop" alt="Photo 03" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Architecture</span>
+          <span class="gallery-item-cat">Photography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item square" data-category="experimental">
+      <img src="https://images.unsplash.com/photo-1563089145-599997674d42?w=800&q=80&auto=format&fit=crop" alt="Experimental 02" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Colour Field</span>
+          <span class="gallery-item-cat">Experimental</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item tall" data-category="branding">
+      <img src="https://images.unsplash.com/photo-1636819488524-1f019c4e1c44?w=800&q=80&auto=format&fit=crop" alt="Branding 03" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Packaging Concept</span>
+          <span class="gallery-item-cat">Branding</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item wide" data-category="poster">
+      <img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=900&q=80&auto=format&fit=crop" alt="Poster 04" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Grid System</span>
+          <span class="gallery-item-cat">Poster</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item square" data-category="photography">
+      <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&q=80&auto=format&fit=crop" alt="Photo 04" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Abstract Form</span>
+          <span class="gallery-item-cat">Photography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item tall" data-category="typography">
+      <img src="https://images.unsplash.com/photo-1524781289445-ddf8d5695e71?w=800&q=80&auto=format&fit=crop" alt="Type 03" />
+      <div class="gallery-item-overlay">
+        <div class="gallery-item-info">
+          <span class="gallery-item-title">Editorial Type</span>
+          <span class="gallery-item-cat">Typography</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">✕ Close</button>
+    <button class="lightbox-prev" id="lb-prev">←</button>
+    <div class="lightbox-inner">
+      <img src="" alt="" id="lb-img" />
+      <div class="lightbox-caption" id="lb-caption"></div>
+    </div>
+    <button class="lightbox-next" id="lb-next">→</button>
   </div>
 
   <!-- CTA -->
   <section class="cta-section">
-    <h2 class="reveal" data-split="words">Let's build something people remember.</h2>
+    <h2 class="reveal" data-split="words">Like what you see?</h2>
     <a class="cta-email" href="mailto:hello@alexvoss.co">hello@alexvoss.co</a>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-name">Metadel<br>Teshome</div>
+    <div class="footer-name">Alex<br>Voss</div>
     <div>
       <p class="footer-col-label">Navigation</p>
       <div class="footer-links">
@@ -161,16 +475,117 @@
       </div>
     </div>
   </footer>
-    <div class="footer-bottom">
-    <span>© Metadel Teshome 2026 — All rights reserved</span>
+  <div class="footer-bottom">
+    <span>© Alex Voss 2026 — All rights reserved</span>
     <span>Creative Director — Available for Freelance</span>
   </div>
 
-  <!-- SCRIPTS: GSAP + ScrollTrigger + Lenis -->
+  <!-- SCRIPTS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
   <script>gsap.registerPlugin(ScrollTrigger);</script>
   <script src="js/main.js"></script>
+
+  <script>
+  // ── GALLERY FILTER ────────────────────────────────────────
+  const filterBtns = document.querySelectorAll('.works-filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      galleryItems.forEach(item => {
+        const match = filter === 'all' || item.dataset.category === filter;
+        gsap.to(item, {
+          opacity: match ? 1 : 0.15,
+          scale: match ? 1 : 0.97,
+          duration: 0.4,
+          ease: 'power2.out',
+          pointerEvents: match ? 'auto' : 'none'
+        });
+      });
+    });
+  });
+
+  // ── LIGHTBOX ──────────────────────────────────────────────
+  const lightbox  = document.getElementById('lightbox');
+  const lbImg     = document.getElementById('lb-img');
+  const lbCaption = document.getElementById('lb-caption');
+  const lbClose   = document.getElementById('lb-close');
+  const lbPrev    = document.getElementById('lb-prev');
+  const lbNext    = document.getElementById('lb-next');
+
+  let currentIndex = 0;
+  let visibleItems = [...galleryItems];
+
+  function openLightbox(index) {
+    visibleItems = [...galleryItems].filter(i => parseFloat(getComputedStyle(i).opacity) > 0.5);
+    currentIndex = index;
+    const item = visibleItems[currentIndex];
+    if (!item) return;
+    lbImg.src     = item.querySelector('img').src;
+    lbImg.alt     = item.querySelector('img').alt;
+    lbCaption.textContent = item.querySelector('.gallery-item-title')?.textContent || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function prevItem() {
+    currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+    const item = visibleItems[currentIndex];
+    gsap.fromTo(lbImg, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3 });
+    lbImg.src = item.querySelector('img').src;
+    lbCaption.textContent = item.querySelector('.gallery-item-title')?.textContent || '';
+  }
+
+  function nextItem() {
+    currentIndex = (currentIndex + 1) % visibleItems.length;
+    const item = visibleItems[currentIndex];
+    gsap.fromTo(lbImg, { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3 });
+    lbImg.src = item.querySelector('img').src;
+    lbCaption.textContent = item.querySelector('.gallery-item-title')?.textContent || '';
+  }
+
+  galleryItems.forEach((item, i) => {
+    item.addEventListener('click', () => openLightbox(i));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lbPrev.addEventListener('click', prevItem);
+  lbNext.addEventListener('click', nextItem);
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLightbox();
+    if (e.key === 'ArrowLeft')  prevItem();
+    if (e.key === 'ArrowRight') nextItem();
+  });
+
+  // ── GALLERY ITEMS STAGGER IN ──────────────────────────────
+  gsap.fromTo('.gallery-item',
+    { y: 50, opacity: 0 },
+    {
+      y: 0, opacity: 1,
+      duration: 0.7,
+      stagger: { amount: 0.8, from: 'start' },
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#gallery', start: 'top 85%' }
+    }
+  );
+  </script>
+
 </body>
 </html>
