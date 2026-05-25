@@ -148,6 +148,19 @@ nav {
 
 /* ─── HERO ───────────────────────────────────────────────── */
 .hero {
+  .hero-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 45%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0.18;
+  mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 100%);
+  pointer-events: none;
+}
   height: 100vh;
   display: flex;
   flex-direction: column;
