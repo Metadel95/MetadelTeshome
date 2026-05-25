@@ -489,21 +489,6 @@ window.addEventListener('DOMContentLoaded', () => {
       );
     });
 
-    // ── MARQUEE SPEED ON SCROLL ───────────────────────────
-    safe(() => {
-      const track = qs('.marquee-track');
-      if (!track) return;
-      ScrollTrigger.create({
-        trigger: '.marquee-wrap',
-        start: 'top bottom', end: 'bottom top',
-        onUpdate(self) {
-          const v   = Math.abs(self.getVelocity()) / 500;
-          const dur = Math.max(5, 18 - v * 5);
-          track.style.animationDuration = dur + 's';
-        }
-      });
-    });
-
   } // end initScrollAnims
 
 }); // end DOMContentLoaded
