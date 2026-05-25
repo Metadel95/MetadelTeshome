@@ -282,6 +282,8 @@ nav {
   white-space: nowrap;
   width: max-content;
   animation: marquee 18s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
 }
 .marquee-track span {
   font-family: var(--font-serif);
